@@ -1,0 +1,18 @@
+{ 
+   "type": "mongodb", 
+   "host": "localhost", 
+   "port": 27017, 
+   "database": "skinlesiontest", 
+   "synchronize": true, 
+   "logging": true, 
+   "entities": ["entity/*.ts" ],    
+   "dropSchema": true,
+   "useUnifiedTopology": true,
+   "migrationsRun": true,
+   
+   "migrations": [ "migration/**/*.ts"], 
+   "subscribers": [ "subscriber/**/*.ts"], 
+   "cli": { 
+      "entitiesDir": "entity", "migrationsDir": "migration", "subscribersDir": "subscriber" 
+   } 
+}
