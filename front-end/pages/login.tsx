@@ -84,7 +84,7 @@ const Login = () => {
     const dispatch = useDispatch();
     const router = useRouter();
 
-    const onLogIn = (e) =>{
+    const onLogIn = (e: any) =>{
         e.preventDefault();
 
         if((user == 'open') && (password == 'open')){            

@@ -10,7 +10,7 @@ const initialState = {
     isLogged : false
 }
 
-const globalReducer = (state = initialState, action) => {
+const globalReducer = (state = initialState, action: any) => {
     //console.log('chegou dispatch')
     
     switch (action.type){
