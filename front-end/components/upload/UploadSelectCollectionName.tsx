@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { GET_Contributor, GET_Echo } from '../../service/service';
 import { useEffect, useState } from 'react';
 import { Router, useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { dispatch_SELECTED_COLLECTIONNAME } from '../../service/GlobalState';
 
 const AreaInteration = styled.div`
     //background-color: green ;
@@ -84,9 +86,11 @@ const UploadSelectCollectionName =  ({ onStepConclued, collections }) => {
     const [collectionSelected, setCollectionSelected] = useState('');    
 
     const router = useRouter();
+    const dispatch = useDispatch();    
 
-    const onClickGroupList = (index) => {        
-        setCollectionSelected(index);        
+    const onClickGroupList = (collectionName) => {        
+        setCollectionSelected(collectionName);  
+        dispatch({type: dispatch_SELECTED_COLLECTIONNAME, collectionName})      
         onStepConclued();        
     }     
     
@@ -111,8 +115,8 @@ const UploadSelectCollectionName =  ({ onStepConclued, collections }) => {
             
             
             {collections?.map( (item, index) => (                
-                    <AreaInteration_ContributorList key={item.idCollection}  onClick={() => onClickGroupList(item.idCollection)}
-                    selected={collectionSelected == item.name}>
+                    <AreaInteration_ContributorList key={item.idCollection}  onClick={() => onClickGroupList(item)}
+                    selected={collectionSelected.name == item.name}>
                         <div className='name'>{item.name}</div>
                         <div className='description'>{item.description}</div>
                     </AreaInteration_ContributorList>                    

@@ -3,15 +3,6 @@ import { GET_Contributor, GET_Echo } from '../../service/service';
 import { useEffect, useState } from 'react';
 import { Router, useRouter } from 'next/router';
 
-
-/*
-export async function getServerSidePropsf() {    
-    const contributors = await GET_Contributor();
-    return {
-      props: { contributors }, // will be passed to the page component as props
-    }
-  }
-*/
 const AreaInteration = styled.div`
     //background-color: green ;
     grid-area: 'interation' ;
@@ -96,7 +87,13 @@ const AreaInteration_SelectArchiveImage = styled.div`
 `
 
 const UploadImageSelect =  ({onStepConclued}) => {    
-    const router = useRouter();   
+    
+    const [selectedArchive, setSelectedArchive ] = useState();
+
+    const onSelect = (event) => {
+        setSelectedArchive(event.target.files[0]);
+    }
+
 
     return (
         <AreaInteration >
@@ -108,10 +105,21 @@ const UploadImageSelect =  ({onStepConclued}) => {
             </AreaInteration_ContainerTitle>    
 
             <AreaInteration_SelectArchiveImage>                
-                    <p className='title'>ZIP file</p>
+                    <p className='title'>ZIP filee</p>
                     <span></span>
-                    <input className='field' type='text'></input>        
-                    <button className='buttonchosse'>Choose File</button>                    
+                    <input className='field' type='file' onChange={onSelect}></input>        
+                    {selectedArchive? 
+                        (
+                            <div>{selectedArchive.name}</div>
+                        ) : 
+                        (
+                        <div>Nenhum arquivo selecionado</div>
+
+                        )
+
+                    }
+                    
+                    
             </AreaInteration_SelectArchiveImage>
 
             <AreaInteration_SelectArchiveImage>                

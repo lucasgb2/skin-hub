@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { GET_Contributor, GET_Echo } from '../../service/service';
 import { useEffect, useState } from 'react';
 import { Router, useRouter } from 'next/router';
+import { useSelector, useDispatch } from 'react-redux';
+import { dispatch_SELECTED_CONTRIBUTOR } from '../../service/GlobalState';
 
 
 const AreaInteration = styled.div`
@@ -69,17 +71,25 @@ const AreaInteration_ContributorList = styled.div`
         cursor: pointer;
     }
 
-    p {
-        font-weight: bold ;
+    .name {
+        font-weight: normal ;
+        color: #6a4c93;
+    }
+
+    .description {
+        font-size: 13px ;
     }
 `;
 
 const UploadSelectContributor = ({onStepConclued, contributors}) => {
-    const [contributorSelected, setContributorSelected] = useState('');
+    const [contributorSelected, setContributorSelected] = useState([]);    
     
-    const onClickContributorList = (index) => {        
-        setContributorSelected(index);        
-        onStepConclued();        
+    const dispatch = useDispatch();    
+    
+    const onClickContributorList = (contributorSelect) => {           
+      setContributorSelected(contributorSelect);        
+      dispatch({type : dispatch_SELECTED_CONTRIBUTOR, contributorSelect})
+      onStepConclued();        
     }     
     
     const router = useRouter();
@@ -104,9 +114,10 @@ const UploadSelectContributor = ({onStepConclued, contributors}) => {
             
             
             {contributors?.map( (item, index) => (                
-                    <AreaInteration_ContributorList key={item.idContributor}  onClick={() => onClickContributorList(item.idContributor)}
-                    selected={contributorSelected == item.idContributor}>
-                        <p>{item.institutionName}</p>
+                    <AreaInteration_ContributorList key={item.idContributor}  onClick={() => onClickContributorList(item)}
+                    selected={contributorSelected.idContributor == item.idContributor}>
+                        <div className='name'>{item.institutionName}</div>
+                        <div className='description'>{item.personNameContact}</div>                        
                     </AreaInteration_ContributorList>                    
             ))}
             

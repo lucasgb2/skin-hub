@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const AreaStep = styled.div`
     grid-area: 'step' ;
@@ -73,7 +74,7 @@ const UploadStepByStep = ({stepActive, stepConclued}) => {
 
 
     return (        
-        <AreaStep>        
+        <AreaStep>                    
             {steps.map((item, index) => (
                 <BoxStep key={index} stepActive={stepActive == item.sequence} stepConluded={stepConclued = (stepActive > item.sequence)}>     
                     <div className='sequence'>

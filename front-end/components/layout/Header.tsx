@@ -83,6 +83,10 @@ const Header = () => {
             <MenuItem>
                 <Link href="/pipeline">Pipeline</Link>
             </MenuItem>    
+
+            <MenuItem>
+                <Link href="/login">Login</Link>
+            </MenuItem>  
         </Menu>          
     </ContainerHeader>
     )
