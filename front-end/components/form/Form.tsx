@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { POST_Contributor } from "../service/service";
+
 
 export const FormContainer = styled.div`
   //background-color: #e6e6e6 ;
