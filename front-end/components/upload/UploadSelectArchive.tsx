@@ -86,11 +86,11 @@ const AreaInteration_SelectArchiveImage = styled.div`
 
 `
 
-const UploadImageSelect =  ({onStepConclued}) => {    
+const UploadImageSelect =  ({onStepConclued}:any) => {    
     
     const [selectedArchive, setSelectedArchive ] = useState();
 
-    const onSelect = (event) => {
+    const onSelect = (event:any) => {
         setSelectedArchive(event.target.files[0]);
     }
 

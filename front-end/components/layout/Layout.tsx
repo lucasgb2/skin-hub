@@ -14,7 +14,7 @@ const Container = styled.div`
     'footer'
   `;
 
-const Layout = (props) => {
+const Layout = (props: any) => {
   return (
     <Container>
       <Header></Header>
